@@ -1,0 +1,4 @@
+const long MSG_LEN=256
+struct Msg {
+    string<MSG_LEN> msg;
+};
