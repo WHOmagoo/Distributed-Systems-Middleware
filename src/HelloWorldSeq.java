@@ -5,11 +5,12 @@ The rtiddsgen tool is part of the RTI Connext distribution.
 For more information, type 'rtiddsgen -help' at a command shell
 or consult the RTI Connext manual.
 */
-import java.util.Collection;
+
 import com.rti.dds.infrastructure.Copyable;
-import com.rti.dds.util.Enum;
-import com.rti.dds.util.Sequence;
 import com.rti.dds.util.LoanableSequence;
+import com.rti.dds.util.Sequence;
+
+import java.util.Collection;
 public final class HelloWorldSeq extends LoanableSequence implements Copyable {
     // -----------------------------------------------------------------------
     // Package Fields
@@ -20,16 +21,16 @@ public final class HelloWorldSeq extends LoanableSequence implements Copyable {
     // -----------------------------------------------------------------------
     // --- Constructors: -----------------------------------------------------
     public HelloWorldSeq() {
-        super(HelloWorld.class);
+        super(Msg.class);
     }
     public HelloWorldSeq (int initialMaximum) {
-        super(HelloWorld.class, initialMaximum);
+        super(Msg.class, initialMaximum);
     }
     public HelloWorldSeq (Collection elements) {
-        super(HelloWorld.class, elements);
+        super(Msg.class, elements);
     }
-    public  HelloWorld get(int index) {
-        return (HelloWorld) super.get(index);
+    public Msg get(int index) {
+        return (Msg) super.get(index);
     }
     // --- From Copyable: ----------------------------------------------------
     public Object copy_from(Object src) {
@@ -56,18 +57,18 @@ public final class HelloWorldSeq extends LoanableSequence implements Copyable {
             } else {
                 // check to see if our entry is null, if it is, a new instance has to be allocated
                 if (get(i) == null){
-                    set(i, HelloWorld.create());
+                    set(i, Msg.create());
                 }
                 set(i, ((Copyable) get(i)).copy_from(typedSrc.get(i)));
             }
         }
-        // copy 'new' HelloWorld objects (beyond the original size of this object)
+        // copy 'new' Msg objects (beyond the original size of this object)
         for(int i = origSize; i < srcSize; i++){
             if (typedSrc.get(i) == null) {
                 add(null);
             } else {
                 // NOTE: we need to create a new object here to hold the copy
-                add(HelloWorld.create());
+                add(Msg.create());
                 // we need to do a set here since enums aren't truely Copyable
                 set(i, ((Copyable) get(i)).copy_from(typedSrc.get(i)));
             }

@@ -5,37 +5,22 @@ The rtiddsgen tool is part of the RTI Connext distribution.
 For more information, type 'rtiddsgen -help' at a command shell
 or consult the RTI Connext manual.
 */
-import com.rti.dds.cdr.CdrEncapsulation;
-import com.rti.dds.cdr.CdrInputStream;
-import com.rti.dds.cdr.CdrOutputStream;
-import com.rti.dds.cdr.CdrPrimitiveType;
-import com.rti.dds.cdr.CdrBuffer;
-import com.rti.dds.cdr.CdrHelper;
-import com.rti.dds.cdr.CdrMemberInfo;
+
+import com.rti.dds.cdr.*;
 import com.rti.dds.domain.DomainParticipant;
+import com.rti.dds.infrastructure.RETCODE_ERROR;
 import com.rti.dds.publication.DataWriter;
 import com.rti.dds.publication.DataWriterListener;
 import com.rti.dds.subscription.DataReader;
 import com.rti.dds.subscription.DataReaderListener;
-import com.rti.dds.topic.KeyHash_t;
-import com.rti.dds.topic.TypeSupportImpl;
-import com.rti.dds.topic.TypeSupportType;
-import com.rti.dds.util.Sequence;
-import com.rti.dds.topic.DefaultEndpointData;
-import com.rti.dds.topic.SampleAssignabilityProperty;
-import com.rti.dds.infrastructure.RETCODE_ERROR;
-import com.rti.dds.infrastructure.*;
-import com.rti.dds.topic.TypeSupportParticipantInfo;
-import com.rti.dds.topic.TypeSupportEndpointInfo;
-import com.rti.dds.topic.PrintFormatProperty;
+import com.rti.dds.topic.*;
 import com.rti.dds.typecode.TypeCode;
-import com.rti.dds.cdr.IllegalCdrStateException;
-import com.rti.dds.infrastructure.Copyable;
+
 public class HelloWorldTypeSupport extends TypeSupportImpl {
     // -----------------------------------------------------------------------
     // Private Fields
     // -----------------------------------------------------------------------
-    private static final String TYPE_NAME = "HelloWorld";
+    private static final String TYPE_NAME = "Msg";
     private static final char[] PLUGIN_VERSION = {2, 0, 0, 0};
     private static final HelloWorldTypeSupport _singleton
             = new HelloWorldTypeSupport();
@@ -71,23 +56,23 @@ public class HelloWorldTypeSupport extends TypeSupportImpl {
         return HelloWorldTypeCode.VALUE;
     }
     public Object create_data() {
-        return HelloWorld.create();
+        return Msg.create();
     }
     public void destroy_data(Object data) {
         return;
     }
     public Object create_key() {
-        return new HelloWorld();
+        return new Msg();
     }
     public void destroy_key(Object key) {
         return;
     }
     public Class get_type() {
-        return HelloWorld.class;
+        return Msg.class;
     }
     public Object copy_data(Object destination, Object source) {
-        HelloWorld typedDst = (HelloWorld) destination;
-        HelloWorld typedSrc = (HelloWorld) source;
+        Msg typedDst = (Msg) destination;
+        Msg typedSrc = (Msg) source;
         return typedDst.copy_from(typedSrc);
     }
     public long get_serialized_sample_max_size(Object endpoint_data,boolean include_encapsulation,short encapsulation_id,long currentAlignment) {
@@ -133,7 +118,7 @@ public class HelloWorldTypeSupport extends TypeSupportImpl {
             short encapsulation_id, long currentAlignment,
             Object sample)
     {
-        HelloWorld typedSrc = (HelloWorld) sample;
+        Msg typedSrc = (Msg) sample;
         DefaultEndpointData epd = ((DefaultEndpointData) endpoint_data) ;
         long origAlignment = currentAlignment;
         long encapsulation_size = currentAlignment;
@@ -187,7 +172,7 @@ public class HelloWorldTypeSupport extends TypeSupportImpl {
             position = dst.resetAlignment();
         }
         if(serialize_sample) {
-            HelloWorld typedSrc = (HelloWorld) src;
+            Msg typedSrc = (Msg) src;
             dst.writeString(typedSrc.msg,128);
         }
         if (serialize_encapsulation) {
@@ -197,7 +182,7 @@ public class HelloWorldTypeSupport extends TypeSupportImpl {
     public long serialize_to_cdr_buffer(
             byte[] buffer,
             long length,
-            HelloWorld src)
+            Msg src)
     {
         return super.serialize_to_cdr_buffer(buffer,length,src);
     }
@@ -216,7 +201,7 @@ public class HelloWorldTypeSupport extends TypeSupportImpl {
             position = dst.resetAlignment();
         }
         if (serialize_key) {
-            HelloWorld typedSrc = (HelloWorld) src;
+            Msg typedSrc = (Msg) src;
             serialize(endpoint_data, src, dst, false, CdrEncapsulation.CDR_ENCAPSULATION_ID_CDR_BE, true, endpoint_plugin_qos);
         }
         if (serialize_encapsulation) {
@@ -236,7 +221,7 @@ public class HelloWorldTypeSupport extends TypeSupportImpl {
             position = src.resetAlignment();
         }
         if(deserialize_sample) {
-            HelloWorld typedDst = (HelloWorld) dst;
+            Msg typedDst = (Msg) dst;
             typedDst.clear();
             try{
                 typedDst.msg = src.readString(128);
@@ -255,20 +240,20 @@ public class HelloWorldTypeSupport extends TypeSupportImpl {
         return dst;
     }
     public void deserialize_from_cdr_buffer(
-            HelloWorld dst,
+            Msg dst,
             byte[] buffer,
             long length)
     {
         super.deserialize_from_cdr_buffer(dst,buffer,length);
     }
     public String data_to_string(
-            HelloWorld sample,
+            Msg sample,
             PrintFormatProperty property)
     {
         return super.data_to_string(sample, property);
     }
     public String data_to_string(
-            HelloWorld sample)
+            Msg sample)
     {
         return super.data_to_string(sample);
     }
@@ -286,7 +271,7 @@ public class HelloWorldTypeSupport extends TypeSupportImpl {
             position = src.resetAlignment();
         }
         if(deserialize_key) {
-            HelloWorld typedDst = (HelloWorld) dst;
+            Msg typedDst = (Msg) dst;
             deserialize_sample(endpoint_data, dst, src, false, true, endpoint_plugin_qos);
         }
         if (deserialize_encapsulation) {
@@ -326,7 +311,7 @@ public class HelloWorldTypeSupport extends TypeSupportImpl {
             position = src.resetAlignment();
         }
         if (deserialize_key) {
-            HelloWorld typedDst = (HelloWorld) sample;
+            Msg typedDst = (Msg) sample;
             deserialize_sample(
                     endpoint_data, sample, src, false,
                     true, endpoint_plugin_qos);
@@ -382,9 +367,9 @@ public class HelloWorldTypeSupport extends TypeSupportImpl {
         /* If the user data type supports keys, then the second argument
         to the constructor below should be true.  Otherwise it should
         be false. */
-        super(TYPE_NAME, false,HelloWorldTypeCode.VALUE,HelloWorld.class,TypeSupportType.TST_STRUCT, PLUGIN_VERSION);
+        super(TYPE_NAME, false,HelloWorldTypeCode.VALUE, Msg.class,TypeSupportType.TST_STRUCT, PLUGIN_VERSION);
     }
     protected HelloWorldTypeSupport (boolean enableKeySupport) {
-        super(TYPE_NAME, enableKeySupport,HelloWorldTypeCode.VALUE,HelloWorld.class,TypeSupportType.TST_STRUCT, PLUGIN_VERSION);
+        super(TYPE_NAME, enableKeySupport,HelloWorldTypeCode.VALUE, Msg.class,TypeSupportType.TST_STRUCT, PLUGIN_VERSION);
     }
 }

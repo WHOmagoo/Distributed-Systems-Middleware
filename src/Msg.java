@@ -5,21 +5,22 @@ The rtiddsgen tool is part of the RTI Connext distribution.
 For more information, type 'rtiddsgen -help' at a command shell
 or consult the RTI Connext manual.
 */
-import com.rti.dds.infrastructure.*;
-import com.rti.dds.infrastructure.Copyable;
-import java.io.Serializable;
+
 import com.rti.dds.cdr.CdrHelper;
-public class HelloWorld   implements Copyable, Serializable{
+import com.rti.dds.infrastructure.Copyable;
+
+import java.io.Serializable;
+public class Msg implements Copyable, Serializable{
     public String msg=  "" ; /* maximum length = (128) */
-    public HelloWorld() {
+    public Msg() {
     }
-    public HelloWorld (HelloWorld other) {
+    public Msg(Msg other) {
         this();
         copy_from(other);
     }
     public static Object create() {
-        HelloWorld self;
-        self = new  HelloWorld();
+        Msg self;
+        self = new Msg();
         self.clear();
         return self;
     }
@@ -33,7 +34,7 @@ public class HelloWorld   implements Copyable, Serializable{
         if(getClass() != o.getClass()) {
             return false;
         }
-        HelloWorld otherObj = (HelloWorld)o;
+        Msg otherObj = (Msg)o;
         return msg.equals(otherObj.msg);
     }
     public int hashCode() {
@@ -42,8 +43,8 @@ public class HelloWorld   implements Copyable, Serializable{
         return __result;
     }
     public Object copy_from(Object src) {
-        HelloWorld typedSrc = (HelloWorld) src;
-        HelloWorld typedDst = this;
+        Msg typedSrc = (Msg) src;
+        Msg typedDst = this;
         typedDst.msg = typedSrc.msg;
         return this;
     }

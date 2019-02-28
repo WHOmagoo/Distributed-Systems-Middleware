@@ -5,12 +5,9 @@ The rtiddsgen tool is part of the RTI Connext distribution.
 For more information, type 'rtiddsgen -help' at a command shell
 or consult the RTI Connext manual.
 */
+
 import com.rti.dds.infrastructure.InstanceHandle_t;
-import com.rti.dds.subscription.DataReaderImpl;
-import com.rti.dds.subscription.DataReaderListener;
-import com.rti.dds.subscription.ReadCondition;
-import com.rti.dds.subscription.SampleInfo;
-import com.rti.dds.subscription.SampleInfoSeq;
+import com.rti.dds.subscription.*;
 import com.rti.dds.topic.TypeSupportImpl;
 // ===========================================================================
 public class HelloWorldDataReader extends DataReaderImpl {
@@ -43,10 +40,10 @@ public class HelloWorldDataReader extends DataReaderImpl {
         take_w_condition_untyped(received_data, info_seq, max_samples,
                 condition);
     }
-    public void read_next_sample(HelloWorld received_data, SampleInfo sample_info) {
+    public void read_next_sample(Msg received_data, SampleInfo sample_info) {
         read_next_sample_untyped(received_data, sample_info);
     }
-    public void take_next_sample(HelloWorld received_data, SampleInfo sample_info) {
+    public void take_next_sample(Msg received_data, SampleInfo sample_info) {
         take_next_sample_untyped(received_data, sample_info);
     }
     public void read_instance(HelloWorldSeq received_data, SampleInfoSeq info_seq,
@@ -102,10 +99,10 @@ public class HelloWorldDataReader extends DataReaderImpl {
     public void return_loan(HelloWorldSeq received_data, SampleInfoSeq info_seq) {
         return_loan_untyped(received_data, info_seq);
     }
-    public void get_key_value(HelloWorld key_holder, InstanceHandle_t handle){
+    public void get_key_value(Msg key_holder, InstanceHandle_t handle){
         get_key_value_untyped(key_holder, handle);
     }
-    public InstanceHandle_t lookup_instance(HelloWorld key_holder) {
+    public InstanceHandle_t lookup_instance(Msg key_holder) {
         return lookup_instance_untyped(key_holder);
     }
     // -----------------------------------------------------------------------
