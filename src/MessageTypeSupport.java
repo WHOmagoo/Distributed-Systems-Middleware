@@ -16,14 +16,14 @@ import com.rti.dds.subscription.DataReaderListener;
 import com.rti.dds.topic.*;
 import com.rti.dds.typecode.TypeCode;
 
-public class HelloWorldTypeSupport extends TypeSupportImpl {
+public class MessageTypeSupport extends TypeSupportImpl {
     // -----------------------------------------------------------------------
     // Private Fields
     // -----------------------------------------------------------------------
     private static final String TYPE_NAME = "Msg";
     private static final char[] PLUGIN_VERSION = {2, 0, 0, 0};
-    private static final HelloWorldTypeSupport _singleton
-            = new HelloWorldTypeSupport();
+    private static final MessageTypeSupport _singleton
+            = new MessageTypeSupport();
     // -----------------------------------------------------------------------
     // Public Methods
     // -----------------------------------------------------------------------
@@ -46,14 +46,14 @@ public class HelloWorldTypeSupport extends TypeSupportImpl {
      * They should be used directly or modified only by advanced users and are
      * subject to change in future versions of RTI Connext.
      */
-    public static HelloWorldTypeSupport get_instance() {
+    public static MessageTypeSupport get_instance() {
         return _singleton;
     }
-    public static HelloWorldTypeSupport getInstance() {
+    public static MessageTypeSupport getInstance() {
         return get_instance();
     }
     public static TypeCode getTypeCode(){
-        return HelloWorldTypeCode.VALUE;
+        return MessageTypeCode.VALUE;
     }
     public Object create_data() {
         return Msg.create();
@@ -173,7 +173,9 @@ public class HelloWorldTypeSupport extends TypeSupportImpl {
         }
         if(serialize_sample) {
             Msg typedSrc = (Msg) src;
-            dst.writeString(typedSrc.msg,128);
+            dst.writeString(typedSrc.msg,256);
+            dst.writeString(typedSrc.sender,256);
+            dst.writeInt(typedSrc.number);
         }
         if (serialize_encapsulation) {
             dst.restoreAlignment(position);
@@ -224,7 +226,9 @@ public class HelloWorldTypeSupport extends TypeSupportImpl {
             Msg typedDst = (Msg) dst;
             typedDst.clear();
             try{
-                typedDst.msg = src.readString(128);
+                typedDst.msg = src.readString(256);
+                typedDst.sender = src.readString(256);
+                typedDst.number = src.readInt();
             } catch (IllegalCdrStateException stateEx) {
                 if (src.available() >= CdrEncapsulation.CDR_ENCAPSULATION_PARAMETER_ID_ALIGNMENT) {
                     throw new RETCODE_ERROR("Error deserializing sample! Remainder: " + src.available() + "\n" +
@@ -353,23 +357,23 @@ public class HelloWorldTypeSupport extends TypeSupportImpl {
     protected DataWriter create_datawriter(long native_writer,
                                            DataWriterListener listener,
                                            int mask) {
-        return new HelloWorldDataWriter (native_writer, listener, mask, this);
+        return new MessageDataWriter(native_writer, listener, mask, this);
     }
     protected DataReader create_datareader(long native_reader,
                                            DataReaderListener listener,
                                            int mask) {
-        return new HelloWorldDataReader(native_reader, listener, mask, this);
+        return new MessageDataReader(native_reader, listener, mask, this);
     }
     // -----------------------------------------------------------------------
     // Constructor
     // -----------------------------------------------------------------------
-    protected HelloWorldTypeSupport() {
+    protected MessageTypeSupport() {
         /* If the user data type supports keys, then the second argument
         to the constructor below should be true.  Otherwise it should
         be false. */
-        super(TYPE_NAME, false,HelloWorldTypeCode.VALUE, Msg.class,TypeSupportType.TST_STRUCT, PLUGIN_VERSION);
+        super(TYPE_NAME, false, MessageTypeCode.VALUE, Msg.class,TypeSupportType.TST_STRUCT, PLUGIN_VERSION);
     }
-    protected HelloWorldTypeSupport (boolean enableKeySupport) {
-        super(TYPE_NAME, enableKeySupport,HelloWorldTypeCode.VALUE, Msg.class,TypeSupportType.TST_STRUCT, PLUGIN_VERSION);
+    protected MessageTypeSupport(boolean enableKeySupport) {
+        super(TYPE_NAME, enableKeySupport, MessageTypeCode.VALUE, Msg.class,TypeSupportType.TST_STRUCT, PLUGIN_VERSION);
     }
 }

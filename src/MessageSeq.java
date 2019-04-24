@@ -11,7 +11,7 @@ import com.rti.dds.util.LoanableSequence;
 import com.rti.dds.util.Sequence;
 
 import java.util.Collection;
-public final class HelloWorldSeq extends LoanableSequence implements Copyable {
+public final class MessageSeq extends LoanableSequence implements Copyable {
     // -----------------------------------------------------------------------
     // Package Fields
     // -----------------------------------------------------------------------
@@ -20,13 +20,13 @@ public final class HelloWorldSeq extends LoanableSequence implements Copyable {
     // Public Fields
     // -----------------------------------------------------------------------
     // --- Constructors: -----------------------------------------------------
-    public HelloWorldSeq() {
+    public MessageSeq() {
         super(Msg.class);
     }
-    public HelloWorldSeq (int initialMaximum) {
+    public MessageSeq(int initialMaximum) {
         super(Msg.class, initialMaximum);
     }
-    public HelloWorldSeq (Collection elements) {
+    public MessageSeq(Collection elements) {
         super(Msg.class, elements);
     }
     public Msg get(int index) {

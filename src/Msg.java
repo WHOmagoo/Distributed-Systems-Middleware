@@ -11,7 +11,10 @@ import com.rti.dds.infrastructure.Copyable;
 
 import java.io.Serializable;
 public class Msg implements Copyable, Serializable{
-    public String msg=  "" ; /* maximum length = (128) */
+    public String sender= "" ; /* maximum length = (256) */
+    public String msg=  "" ; /* maximum length = (256) */
+    public int number = -1;
+
     public Msg() {
     }
     public Msg(Msg other) {
@@ -26,6 +29,8 @@ public class Msg implements Copyable, Serializable{
     }
     public void clear() {
         msg=  "";
+        sender = "";
+        number = -1;
     }
     public boolean equals(Object o) {
         if (o == null) {
@@ -35,17 +40,20 @@ public class Msg implements Copyable, Serializable{
             return false;
         }
         Msg otherObj = (Msg)o;
-        return msg.equals(otherObj.msg);
+        return msg.equals(otherObj.msg) && sender.equals(otherObj.sender);
     }
     public int hashCode() {
         int __result = 0;
-        __result += msg.hashCode();
+//        __result += msg.hashCode();
+        __result += sender.hashCode();
         return __result;
     }
     public Object copy_from(Object src) {
         Msg typedSrc = (Msg) src;
         Msg typedDst = this;
         typedDst.msg = typedSrc.msg;
+        typedDst.sender = typedSrc.sender;
+        typedDst.number = typedSrc.number;
         return this;
     }
     public String toString(){
@@ -55,10 +63,14 @@ public class Msg implements Copyable, Serializable{
         StringBuffer strBuffer = new StringBuffer();
         if (desc != null) {
             CdrHelper.printIndent(strBuffer, indent);
-            strBuffer.append(desc).append(":\n");
+            strBuffer.append(desc).append("Msg object:\n");
+            CdrHelper.printIndent(strBuffer, indent+1);
+            strBuffer.append("sender: ").append(sender).append("\n");
+            CdrHelper.printIndent(strBuffer, indent+1);
+            strBuffer.append("message: ").append(msg).append("\n");
+            CdrHelper.printIndent(strBuffer, indent+1);
+            strBuffer.append("message number: ").append(number).append("\n");
         }
-        CdrHelper.printIndent(strBuffer, indent+1);
-        strBuffer.append("msg: ").append(msg).append("\n");
         return strBuffer.toString();
     }
 }

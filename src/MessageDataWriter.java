@@ -13,7 +13,7 @@ import com.rti.dds.publication.DataWriterImpl;
 import com.rti.dds.publication.DataWriterListener;
 import com.rti.dds.topic.TypeSupportImpl;
 // ===========================================================================
-public class HelloWorldDataWriter extends DataWriterImpl {
+public class MessageDataWriter extends DataWriterImpl {
     // -----------------------------------------------------------------------
     // Public Methods
     // -----------------------------------------------------------------------
@@ -77,8 +77,8 @@ public class HelloWorldDataWriter extends DataWriterImpl {
     // Package Methods
     // -----------------------------------------------------------------------
     // --- Constructors: -----------------------------------------------------
-    /*package*/ HelloWorldDataWriter(long native_writer, DataWriterListener listener,
-                                     int mask, TypeSupportImpl type) {
+    /*package*/ MessageDataWriter(long native_writer, DataWriterListener listener,
+                                  int mask, TypeSupportImpl type) {
         super(native_writer, listener, mask, type);
     }
 }

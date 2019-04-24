@@ -10,30 +10,30 @@ import com.rti.dds.infrastructure.InstanceHandle_t;
 import com.rti.dds.subscription.*;
 import com.rti.dds.topic.TypeSupportImpl;
 // ===========================================================================
-public class HelloWorldDataReader extends DataReaderImpl {
+public class MessageDataReader extends DataReaderImpl {
     // -----------------------------------------------------------------------
     // Public Methods
     // -----------------------------------------------------------------------
-    public void read(HelloWorldSeq received_data, SampleInfoSeq info_seq,
+    public void read(MessageSeq received_data, SampleInfoSeq info_seq,
                      int max_samples,
                      int sample_states, int view_states, int instance_states) {
         read_untyped(received_data, info_seq, max_samples, sample_states,
                 view_states, instance_states);
     }
-    public void take(HelloWorldSeq received_data, SampleInfoSeq info_seq,
+    public void take(MessageSeq received_data, SampleInfoSeq info_seq,
                      int max_samples,
                      int sample_states, int view_states, int instance_states) {
         take_untyped(received_data, info_seq, max_samples, sample_states,
                 view_states, instance_states);
     }
-    public void read_w_condition(HelloWorldSeq received_data,
+    public void read_w_condition(MessageSeq received_data,
                                  SampleInfoSeq info_seq,
                                  int max_samples,
                                  ReadCondition condition) {
         read_w_condition_untyped(received_data, info_seq, max_samples,
                 condition);
     }
-    public void take_w_condition(HelloWorldSeq received_data,
+    public void take_w_condition(MessageSeq received_data,
                                  SampleInfoSeq info_seq,
                                  int max_samples,
                                  ReadCondition condition) {
@@ -46,57 +46,57 @@ public class HelloWorldDataReader extends DataReaderImpl {
     public void take_next_sample(Msg received_data, SampleInfo sample_info) {
         take_next_sample_untyped(received_data, sample_info);
     }
-    public void read_instance(HelloWorldSeq received_data, SampleInfoSeq info_seq,
+    public void read_instance(MessageSeq received_data, SampleInfoSeq info_seq,
                               int max_samples, InstanceHandle_t a_handle, int sample_states,
                               int view_states, int instance_states) {
         read_instance_untyped(received_data, info_seq, max_samples, a_handle,
                 sample_states, view_states, instance_states);
     }
-    public void take_instance(HelloWorldSeq received_data, SampleInfoSeq info_seq,
+    public void take_instance(MessageSeq received_data, SampleInfoSeq info_seq,
                               int max_samples, InstanceHandle_t a_handle, int sample_states,
                               int view_states, int instance_states) {
         take_instance_untyped(received_data, info_seq, max_samples, a_handle,
                 sample_states, view_states, instance_states);
     }
-    public void read_instance_w_condition(HelloWorldSeq received_data,
+    public void read_instance_w_condition(MessageSeq received_data,
                                           SampleInfoSeq info_seq, int max_samples,
                                           InstanceHandle_t a_handle, ReadCondition condition) {
         read_instance_w_condition_untyped(received_data, info_seq,
                 max_samples, a_handle, condition);
     }
-    public void take_instance_w_condition(HelloWorldSeq received_data,
+    public void take_instance_w_condition(MessageSeq received_data,
                                           SampleInfoSeq info_seq, int max_samples,
                                           InstanceHandle_t a_handle, ReadCondition condition) {
         take_instance_w_condition_untyped(received_data, info_seq,
                 max_samples, a_handle, condition);
     }
-    public void read_next_instance(HelloWorldSeq received_data,
+    public void read_next_instance(MessageSeq received_data,
                                    SampleInfoSeq info_seq, int max_samples,
                                    InstanceHandle_t a_handle, int sample_states, int view_states,
                                    int instance_states) {
         read_next_instance_untyped(received_data, info_seq, max_samples,
                 a_handle, sample_states, view_states, instance_states);
     }
-    public void take_next_instance(HelloWorldSeq received_data,
+    public void take_next_instance(MessageSeq received_data,
                                    SampleInfoSeq info_seq, int max_samples,
                                    InstanceHandle_t a_handle, int sample_states, int view_states,
                                    int instance_states) {
         take_next_instance_untyped(received_data, info_seq, max_samples,
                 a_handle, sample_states, view_states, instance_states);
     }
-    public void read_next_instance_w_condition(HelloWorldSeq received_data,
+    public void read_next_instance_w_condition(MessageSeq received_data,
                                                SampleInfoSeq info_seq, int max_samples,
                                                InstanceHandle_t a_handle, ReadCondition condition) {
         read_next_instance_w_condition_untyped(received_data, info_seq,
                 max_samples, a_handle, condition);
     }
-    public void take_next_instance_w_condition(HelloWorldSeq received_data,
+    public void take_next_instance_w_condition(MessageSeq received_data,
                                                SampleInfoSeq info_seq, int max_samples,
                                                InstanceHandle_t a_handle, ReadCondition condition) {
         take_next_instance_w_condition_untyped(received_data, info_seq,
                 max_samples, a_handle, condition);
     }
-    public void return_loan(HelloWorldSeq received_data, SampleInfoSeq info_seq) {
+    public void return_loan(MessageSeq received_data, SampleInfoSeq info_seq) {
         return_loan_untyped(received_data, info_seq);
     }
     public void get_key_value(Msg key_holder, InstanceHandle_t handle){
@@ -109,8 +109,8 @@ public class HelloWorldDataReader extends DataReaderImpl {
     // Package Methods
     // -----------------------------------------------------------------------
     // --- Constructors: -----------------------------------------------------
-    /*package*/  HelloWorldDataReader (long native_reader, DataReaderListener listener,
-                                       int mask, TypeSupportImpl data_type) {
+    /*package*/  MessageDataReader(long native_reader, DataReaderListener listener,
+                                   int mask, TypeSupportImpl data_type) {
         super(native_reader, listener, mask, data_type);
     }
 }

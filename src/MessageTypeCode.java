@@ -10,7 +10,7 @@ import com.rti.dds.typecode.ExtensibilityKind;
 import com.rti.dds.typecode.StructMember;
 import com.rti.dds.typecode.TypeCode;
 import com.rti.dds.typecode.TypeCodeFactory;
-public class  HelloWorldTypeCode {
+public class MessageTypeCode {
     public static final TypeCode VALUE = getTypeCode();
     private static TypeCode getTypeCode() {
         TypeCode tc = null;
