@@ -1,4 +1,4 @@
-/*
+package messages;/*
 WARNING: THIS FILE IS AUTO-GENERATED. DO NOT MODIFY.
 This file was generated from .idl using "rtiddsgen".
 The rtiddsgen tool is part of the RTI Connext distribution.
@@ -17,6 +17,7 @@ public class Msg implements Copyable, Serializable{
 
     public Msg() {
     }
+
     public Msg(Msg other) {
         this();
         copy_from(other);
@@ -44,7 +45,7 @@ public class Msg implements Copyable, Serializable{
     }
     public int hashCode() {
         int __result = 0;
-//        __result += msg.hashCode();
+//        __result += route.hashCode();
         __result += sender.hashCode();
         return __result;
     }
@@ -63,9 +64,9 @@ public class Msg implements Copyable, Serializable{
         StringBuffer strBuffer = new StringBuffer();
         if (desc != null) {
             CdrHelper.printIndent(strBuffer, indent);
-            strBuffer.append(desc).append("Msg object:\n");
+            strBuffer.append(desc).append("BusSystem.Msg object:\n");
             CdrHelper.printIndent(strBuffer, indent+1);
-            strBuffer.append("sender: ").append(sender).append("\n");
+            strBuffer.append("vehicle: ").append(sender).append("\n");
             CdrHelper.printIndent(strBuffer, indent+1);
             strBuffer.append("message: ").append(msg).append("\n");
             CdrHelper.printIndent(strBuffer, indent+1);

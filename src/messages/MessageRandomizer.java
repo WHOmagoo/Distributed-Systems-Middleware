@@ -1,3 +1,5 @@
+package messages;
+
 public class MessageRandomizer {
     private static String[] nouns = {"Apple", "Banana", "Cucumber", "Dragon Fruit", "Elephant Garlic", "Grape"};
     private static String[] adjectives = {"Yellow", "Sweet", "Rotten", "Fresh", "Gross", "Juicy", "Green", "Ripe", "Red"};

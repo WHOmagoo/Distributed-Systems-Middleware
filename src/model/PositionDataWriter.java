@@ -1,4 +1,4 @@
-/*
+package model;/*
 WARNING: THIS FILE IS AUTO-GENERATED. DO NOT MODIFY.
 This file was generated from .idl using "rtiddsgen".
 The rtiddsgen tool is part of the RTI Connext distribution.
@@ -13,71 +13,71 @@ import com.rti.dds.publication.DataWriterImpl;
 import com.rti.dds.publication.DataWriterListener;
 import com.rti.dds.topic.TypeSupportImpl;
 // ===========================================================================
-public class MessageDataWriter extends DataWriterImpl {
+public class PositionDataWriter extends DataWriterImpl {
     // -----------------------------------------------------------------------
     // Public Methods
     // -----------------------------------------------------------------------
-    public InstanceHandle_t register_instance(Msg instance_data) {
+    public InstanceHandle_t register_instance(Position instance_data) {
         return register_instance_untyped(instance_data);
     }
-    public InstanceHandle_t register_instance_w_timestamp(Msg instance_data,
+    public InstanceHandle_t register_instance_w_timestamp(Position instance_data,
                                                           Time_t source_timestamp) {
         return register_instance_w_timestamp_untyped(
                 instance_data, source_timestamp);
     }
-    public InstanceHandle_t register_instance_w_params(Msg instance_data,
+    public InstanceHandle_t register_instance_w_params(Position instance_data,
                                                        WriteParams_t params) {
         return register_instance_w_params_untyped(
                 instance_data, params);
     }
-    public void unregister_instance(Msg instance_data,
+    public void unregister_instance(Position instance_data,
                                     InstanceHandle_t handle) {
         unregister_instance_untyped(instance_data, handle);
     }
-    public void unregister_instance_w_timestamp(Msg instance_data,
+    public void unregister_instance_w_timestamp(Position instance_data,
                                                 InstanceHandle_t handle, Time_t source_timestamp) {
         unregister_instance_w_timestamp_untyped(
                 instance_data, handle, source_timestamp);
     }
-    public void unregister_instance_w_params(Msg instance_data,
+    public void unregister_instance_w_params(Position instance_data,
                                              WriteParams_t params) {
         unregister_instance_w_params_untyped(
                 instance_data, params);
     }
-    public void write(Msg instance_data, InstanceHandle_t handle) {
+    public void write(Position instance_data, InstanceHandle_t handle) {
         write_untyped(instance_data, handle);
     }
-    public void write_w_timestamp(Msg instance_data,
+    public void write_w_timestamp(Position instance_data,
                                   InstanceHandle_t handle, Time_t source_timestamp) {
         write_w_timestamp_untyped(instance_data, handle, source_timestamp);
     }
-    public void write_w_params(Msg instance_data,
+    public void write_w_params(Position instance_data,
                                WriteParams_t params) {
         write_w_params_untyped(instance_data, params);
     }
-    public void dispose(Msg instance_data, InstanceHandle_t instance_handle){
+    public void dispose(Position instance_data, InstanceHandle_t instance_handle){
         dispose_untyped(instance_data, instance_handle);
     }
-    public void dispose_w_timestamp(Msg instance_data,
+    public void dispose_w_timestamp(Position instance_data,
                                     InstanceHandle_t instance_handle, Time_t source_timestamp) {
         dispose_w_timestamp_untyped(
                 instance_data, instance_handle, source_timestamp);
     }
-    public void dispose_w_params(Msg instance_data,
+    public void dispose_w_params(Position instance_data,
                                  WriteParams_t params) {
         dispose_w_params_untyped(instance_data, params);
     }
-    public void get_key_value(Msg key_holder, InstanceHandle_t handle) {
+    public void get_key_value(Position key_holder, InstanceHandle_t handle) {
         get_key_value_untyped(key_holder, handle);
     }
-    public InstanceHandle_t lookup_instance(Msg key_holder) {
+    public InstanceHandle_t lookup_instance(Position key_holder) {
         return lookup_instance_untyped(key_holder);
     }
     // -----------------------------------------------------------------------
     // Package Methods
     // -----------------------------------------------------------------------
     // --- Constructors: -----------------------------------------------------
-    /*package*/ MessageDataWriter(long native_writer, DataWriterListener listener,
+    /*package*/ PositionDataWriter(long native_writer, DataWriterListener listener,
                                   int mask, TypeSupportImpl type) {
         super(native_writer, listener, mask, type);
     }

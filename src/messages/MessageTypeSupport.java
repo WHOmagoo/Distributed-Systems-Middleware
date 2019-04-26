@@ -1,4 +1,4 @@
-/*
+package messages;/*
 WARNING: THIS FILE IS AUTO-GENERATED. DO NOT MODIFY.
 This file was generated from .idl using "rtiddsgen".
 The rtiddsgen tool is part of the RTI Connext distribution.
@@ -20,7 +20,7 @@ public class MessageTypeSupport extends TypeSupportImpl {
     // -----------------------------------------------------------------------
     // Private Fields
     // -----------------------------------------------------------------------
-    private static final String TYPE_NAME = "Msg";
+    private static final String TYPE_NAME = "BusSystem.Msgzz";
     private static final char[] PLUGIN_VERSION = {2, 0, 0, 0};
     private static final MessageTypeSupport _singleton
             = new MessageTypeSupport();

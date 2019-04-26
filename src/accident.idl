@@ -1,0 +1,6 @@
+structAccident {
+    string timestamp;
+    string route;
+    string vehicle;
+    long stopNumber;
+};
