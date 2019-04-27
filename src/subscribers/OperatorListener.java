@@ -22,8 +22,7 @@ class OperatorListener extends DataReaderAdapter {
             for(int i = 0; i < _dataSeq.size(); ++i) {
                 SampleInfo info = _infoSeq.get(i);
                 if (info.valid_data) {
-                    System.out.println("Hey" +
-                            _dataSeq.get(i).toString("Received",0));
+                    System.out.println(_dataSeq.get(i).toString("Received",0));
                 }
             }
         } catch (RETCODE_NO_DATA noData) {

@@ -1,4 +1,4 @@
-structAccident {
+struct Accident {
     string timestamp;
     string route;
     string vehicle;

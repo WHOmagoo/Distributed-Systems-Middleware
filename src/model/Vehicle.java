@@ -14,7 +14,7 @@ public class Vehicle implements Runnable {
 
     public Vehicle(String name, Route route, int stopNumber) {
         this.route = route;
-        this.stopNumber = stopNumber;
+        this.stopNumber = stopNumber - 1;
         this.startingLocation = stopNumber;
 
         position = new Position();
@@ -28,8 +28,8 @@ public class Vehicle implements Runnable {
         generateTrafficCondition();
     }
 
-    private long randomizeFillInRatio() {
-        return Math.round(Math.random() * 100);
+    private int randomizeFillInRatio() {
+        return (int) Math.round(Math.random() * 100);
     }
 
     public Route getRoute() {
@@ -46,11 +46,11 @@ public class Vehicle implements Runnable {
             //Prepare results
 //            System.out.println(position.vehicle + " arrived at a stop at " + timeSinceLastStop + " should be" + position.getTimeBetweenStops());
             generateTrafficCondition();
-            Position result = new Position();
-            result.copy_from(position);
+
+
             Timestamp t = new Timestamp(System.currentTimeMillis());
 
-            result.timestamp = t.toString().substring(11, 19);
+            position.timestamp = t.toString().substring(11, 19);
 
             stopNumber += 1;
 
@@ -65,8 +65,10 @@ public class Vehicle implements Runnable {
                 }
             }
 
-            publisher.write(result);
-//            System.out.println(result);
+            position.stopNumber = this.stopNumber;
+
+            publisher.write(position);
+            System.out.println(position.vehicle + " published a " + ("accident".equalsIgnoreCase(position.trafficConditions)? "Accident" : "Message") +" at stop " + position.stopNumber + " on route " + route.getNumberOfStops() + " at " + position.getTimestamp());
 
             try {
                 Thread.sleep((int) (position.getTimeBetweenStops() * 1000));

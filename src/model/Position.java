@@ -15,11 +15,11 @@ public class Position implements Copyable, Serializable{
     public String timestamp;
     public String route;
     public String vehicle;
-    public long stopNumber;
-    public long numStops;
-    public long timeBetweenStops;
+    public int stopNumber;
+    public int numStops;
+    public int timeBetweenStops;
     public String trafficConditions;
-    public long fillInRatio;
+    public int fillInRatio;
 
     public Position() {
     }
@@ -46,11 +46,11 @@ public class Position implements Copyable, Serializable{
         return vehicle;
     }
 
-    public long getStopNumber() {
+    public int getStopNumber() {
         return stopNumber;
     }
 
-    public long getNumStops(){
+    public int getNumStops(){
         return numStops;
     }
 
@@ -68,7 +68,7 @@ public class Position implements Copyable, Serializable{
         return trafficConditions;
     }
 
-    public long getFillInRatio() {
+    public int getFillInRatio() {
         return fillInRatio;
     }
 
@@ -84,15 +84,15 @@ public class Position implements Copyable, Serializable{
         this.vehicle = vehicle;
     }
 
-    public void setStopNumber(long stopNumber) {
+    public void setStopNumber(int stopNumber) {
         this.stopNumber = stopNumber;
     }
 
-    public void setTimeBetweenStops(long timeBetweenStops) {
+    public void setTimeBetweenStops(int timeBetweenStops) {
         this.timeBetweenStops = timeBetweenStops;
     }
 
-    public void setNumStops(long numStops){
+    public void setNumStops(int numStops){
         this.numStops = numStops;
     }
 
@@ -103,7 +103,7 @@ public class Position implements Copyable, Serializable{
         this.trafficConditions = trafficConditions;
     }
 
-    public void setFillInRatio(long fillInRatio) {
+    public void setFillInRatio(int fillInRatio) {
         this.fillInRatio = fillInRatio;
     }
 

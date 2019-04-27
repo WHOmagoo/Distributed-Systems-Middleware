@@ -27,6 +27,8 @@ public class Operator {
     }
 
     public static void listen(int domainId){
+        System.out.println("MessageType\tRoute\t\tVehicle\tTraffic\tStop#\t#Stops\tTimeBetweenStops\tFill%\tTimestamp");
+
         DomainParticipant participant = null;
         Subscriber subscriber = null;
         Topic topic = null;
@@ -66,20 +68,34 @@ public class Operator {
                     "P3464_hrmcgough: PT/POS",
                     typeName, DomainParticipant.TOPIC_QOS_DEFAULT,
                     null /* listener */, StatusKind.STATUS_MASK_NONE);
-            if (topic == null) {
+
+            /* To customize topic QoS, use
+            the configuration file USER_QOS_PROFILES.xml */
+            Topic topic2 = participant.create_topic(
+                    "P3464_hmcgough: PT/ALR/ACC",
+                    typeName, DomainParticipant.TOPIC_QOS_DEFAULT,
+                    null /* listener */, StatusKind.STATUS_MASK_NONE);
+
+
+            if (topic == null || topic2 == null) {
                 System.err.println("create_topic error\n");
                 return;
             }
 
             // --- Create reader --- //
             listener = new OperatorListener();
+            OperatorListener listener2 = new OperatorListener();
+
+
             /* To customize data reader QoS, use
             the configuration file USER_QOS_PROFILES.xml */
             reader = (PositionDataReader)
                     subscriber.create_datareader(
                             topic, Subscriber.DATAREADER_QOS_DEFAULT, listener,
                             StatusKind.STATUS_MASK_ALL);
-            if (reader == null) {
+
+            PositionDataReader reader2 = (PositionDataReader) subscriber.create_datareader(topic2, Subscriber.DATAREADER_QOS_DEFAULT, listener, StatusKind.STATUS_MASK_ALL);
+            if (reader == null || reader2 == null) {
                 System.err.println("create_datareader error\n");
                 return;
             }
